@@ -5,6 +5,7 @@
 services:
   eso-profiler-viewer:
     build: .
+    # image: eso-profiler-viewer
     ports:
       - "8080:80"
     restart: unless-stopped
