@@ -3,9 +3,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 services:
-  perfetto:
-    image: python
-    command: /files/src-perfetto/build.sh
+  eso-profiler-viewer:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
     environment:
       - PERFETTO_VERSION=v38.0
     volumes:

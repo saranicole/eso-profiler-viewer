@@ -26,6 +26,12 @@ class ESOProfilerPlugin implements Plugin {
         (globals as any)._dispatch = dispatch;
 
         const tauri = (window as any).__TAURI__;
+        
+        if (!tauri?.path || !tauri?.fs) {
+            console.log("ESOProfilerPlugin: running in browser mode, skipping Tauri features");
+            return;
+        }
+        
         const { documentDir, resolve } = tauri.path;
         const { readTextFile } = tauri.fs;
         const DEFAULT_FILE_NAME = "ESOProfiler.lua";
